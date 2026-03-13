@@ -25,7 +25,7 @@ class Artiste(models.Model):
 
 class Piste(models.Model):
     titre = models.CharField(max_length=255)
-    duree = models.DecimalField(max_digits=4, decimal_places=2)
+    duree = models.CharField(max_length=10)
     auteur = models.ForeignKey(Artiste, on_delete = models.CASCADE)
     compositeur = models.CharField(
         max_length=255,
@@ -51,6 +51,11 @@ class Categorie(models.Model):
     def __str__(self):
         return self.categorie
 
+class Genre(models.Model):
+    genre = models.CharField(max_length=255, blank=True, null=True)
+
+    def __str__(self):
+        return self.genre
 
 # TODO ajouter le genre de chaque album
 class Disc(models.Model):
@@ -71,6 +76,7 @@ class Disc(models.Model):
     auteurs = models.ManyToManyField(Artiste)
     pistes = models.ManyToManyField(Piste)
     categorie = models.ForeignKey(Categorie, on_delete = models.CASCADE, blank=True, null=True)
+    genre = models.ForeignKey(Genre, on_delete= models.CASCADE, blank=True, null=True)
 
     def get_auteurs(self):
         return "\n".join([p.nom for p in self.auteurs.all()])
