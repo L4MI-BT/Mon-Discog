@@ -86,4 +86,4 @@ class AddView(generic.TemplateView):
                 )
                 disc.pistes.add(piste)
 
-        return redirect("/add")
+        return redirect("/")
