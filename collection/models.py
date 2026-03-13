@@ -52,11 +52,11 @@ class Categorie(models.Model):
         return self.categorie
 
 
-
+# TODO ajouter le genre de chaque album
 class Disc(models.Model):
     nom_album = models.CharField(max_length=255)
     jacket= models.ImageField(
-        upload_to='media/collection/images/',
+        upload_to='collection/images/',
         blank=True,
         null=True
     )
